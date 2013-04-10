@@ -2,7 +2,7 @@
 
 *Shows an indicator in the Network Plugins page 
 whether a plugin is being used by any blog of the network. 
-Shows the list of blogs on rollover.* 
+Shows the list of blogs on rollover.*
 
 **Better used as a mu-plugin.**
 
