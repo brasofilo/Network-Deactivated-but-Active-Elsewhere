@@ -9,7 +9,7 @@ Shows the list of blogs on rollover.*
 
 
 <sub>***IN ACTION***</sub>  
->![metabox](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot.png)
+![metabox](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot.png)
 
 
 ## Credits
