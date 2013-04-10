@@ -1,0 +1,40 @@
+#tooltip {
+    padding: 20px;
+    margin: 10px;
+    background: #ff0030;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.3em;
+    font-weight: normal;
+    text-shadow: -1px -1px #aa3030;
+    position: absolute;
+    z-index: 10;
+    line-height: 28px;
+}
+
+.stitched {
+    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 0 4px #ff0030, 2px 1px 6px 4px rgba(10, 10, 0, 0.5);
+    -moz-border-radius: 3px;
+    border-radius: 3px; 
+}
+
+.ndbae-act-link {
+    top:0 !important;
+    background: #D8D8D8 !important;
+    cursor: crosshair 
+}
+
+a.red-blogs {
+    color:#f00;
+}
+
+a.blue-blogs {
+}
+
+.single-blog {
+    color:rgba(255, 255, 255, 0.5);
+}
+
