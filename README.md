@@ -9,8 +9,8 @@ Shows the list of blogs on rollover.*
 
 There are cases where a Network activated plugin  
 also shows the <kbd>Active Elsewhere</kbd> button.  
-And -I suppose- this is because  
-the plugin was active prior to Network activation.
+And -I suppose- this is because the plugin  
+was active prior to Network activation.
 
 
 <sub>***IN ACTION***</sub>  
