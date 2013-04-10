@@ -40,7 +40,7 @@ jQuery(document).ready(function($)
                                 left: e.pageX + 20
                             }
                             );
-                        } // end function
+                        } // end function 
                 ); // end each()
             });
 });

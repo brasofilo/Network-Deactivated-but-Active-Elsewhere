@@ -205,4 +205,4 @@ class B5F_Blog_Active_Plugins_Multisite
 		}
 		return $active_in_blogs;
 	}
-}
+} 

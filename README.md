@@ -8,7 +8,7 @@ Shows the list of blogs on rollover.*
 **Better used as a mu-plugin.**
 
 
-<sup>***In action***</sup>  
+<sup>***IN ACTION***</sup>  
 >![metabox](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot.png)
 
 
