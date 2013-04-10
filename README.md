@@ -7,6 +7,11 @@ Shows the list of blogs on rollover.*
 
 **Better used as a mu-plugin.**
 
+There are cases where a Network activated plugin 
+also shows the <kbd>Active Elsewhere</kbd> button.
+And -I suppose- this is because 
+the plugin was active prior to Network activation.
+
 
 <sub>***IN ACTION***</sub>  
 ![metabox](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot.png)
