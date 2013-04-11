@@ -2,14 +2,12 @@
 
 /**
  * Plugin Name: Network Deactivated but Active Elsewhere
- * Plugin URI: 
+ * Plugin URI: https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere
  * Description: Shows an indicator in the Network Plugins page whether a plugin is being used by any blog of the network. Shows the list of blogs on rollover. Better used as a mu-plugin.
- * Version: 1.0
- * Stable Tag: 1.0
+ * Version: 1.1
  * Author: Rodolfo Buaiz
  * Author URI: http://rodbuaiz.com/
  * Network: true
- * Domain Path: /languages
  * License: GPLv2 or later
  *
  * 
@@ -118,7 +116,12 @@ class B5F_Blog_Active_Plugins_Multisite
 				'admin_print_scripts',
 				array( $this, 'enqueue')
 		);
-		
+		add_filter( 
+				'views_plugins-network', 
+				array( $this, 'inactive_views' ), 
+				10, 1 
+		);
+
 		// Store all blogs IDs
 		global $wpdb;
 		$blogs = $wpdb->get_results(
@@ -159,6 +162,23 @@ class B5F_Blog_Active_Plugins_Multisite
 				$this->plugin_url . '/ndbae.css'
 		);
 
+	}
+	
+	/**
+	 * Button to show/hide locally active plugins in the screen "Inactive plugins"
+	 * 
+	 * @wp-hook views_plugins-network
+	 * @param array $views
+	 * @return array
+	 */
+	public function inactive_views( $views ) 
+	{
+		if( 
+			isset( $_GET['plugin_status'] ) 
+			&& in_array( $_GET['plugin_status'], array('inactive','all') ) 
+		)
+			$views['metakey'] = '<label><input type="checkbox" id="hide_network_but_local"> Hide locally active plugins</label>';
+		return $views;
 	}
 	
 	/**

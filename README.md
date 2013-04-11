@@ -14,8 +14,19 @@ was active prior to Network activation.
 
 
 <sub>***IN ACTION***</sub>  
-![metabox](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot.png)
+![plugins screen](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot.png)
 
+* In the screens All and Inactive, a switch to show/hide the NDBAE plugins.  
+Please, note that the switch only appears when All is explicitily clicked.*  
+![switcher](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot1.png)
+
+## Changelog
+
+Version 1.1  
+* Added switch to show/hide the NDBAE plugins
+
+Version 1.0  
+* Plugin launch
 
 ## Credits
  - Plugin skeleton from [Plugin Class Demo](https://gist.github.com/3804204), by toscho. 
