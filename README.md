@@ -1,5 +1,5 @@
 # [Network Deactivated but Active Elsewhere](https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere)
-<sup>*Version 1.0*</sup>
+<sup>*Version 1.1*</sup>
 
 *Inserts an indicator in the Network Plugins page whether a plugin is being used by any blog of the network.  
 Shows the list of blogs on rollover.*
