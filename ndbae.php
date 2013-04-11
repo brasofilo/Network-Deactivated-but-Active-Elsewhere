@@ -3,7 +3,7 @@
 /**
  * Plugin Name: Network Deactivated but Active Elsewhere
  * Plugin URI: https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere
- * Description: Shows an indicator in the Network Plugins page whether a plugin is being used by any blog of the network. Shows the list of blogs on rollover. Better used as a mu-plugin.
+ * Description: Inserts an indicator in the Network Plugins page whether a plugin is being used by any blog of the network. Shows the list of blogs on rollover. Better used as a mu-plugin.
  * Version: 1.1
  * Author: Rodolfo Buaiz
  * Author URI: http://rodbuaiz.com/
