@@ -1,7 +1,7 @@
 ![MTT logo](https://raw.github.com/brasofilo/Private-Comments-in-CPT/master/logo.png)
 
 # [Network Deactivated but Active Elsewhere](https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere)
-<sup>*Version 1.1*</sup>
+<sup>*Version 1.2*</sup>
 
 *Inserts an indicator in the Network Plugins page whether a plugin is being used by any blog of the network.  
 Shows the list of blogs on rollover.*
@@ -21,6 +21,9 @@ And -I suppose- this is because the plugin was active prior to Network activatio
 ![switcher](https://raw.github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere/master/screenshot1.png)
 
 ## Changelog
+
+Version 1.2
+* TODO: check diff to see what changed :o{
 
 Version 1.1  
 * Added switch to show/hide the NDBAE plugins
