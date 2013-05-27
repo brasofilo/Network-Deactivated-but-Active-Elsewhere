@@ -1,3 +1,5 @@
+![MTT logo](https://raw.github.com/brasofilo/Private-Comments-in-CPT/master/logo.png)
+
 # [Network Deactivated but Active Elsewhere](https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere)
 <sup>*Version 1.1*</sup>
 

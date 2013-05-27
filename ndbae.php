@@ -4,7 +4,7 @@
  * Plugin Name: Network Deactivated but Active Elsewhere
  * Plugin URI: https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere
  * Description: Inserts an indicator in the Network Plugins page whether a plugin is being used by any blog of the network. Shows the list of blogs on rollover. Better used as a mu-plugin.
- * Version: 1.1
+ * Version: 1.2
  * Author: Rodolfo Buaiz
  * Author URI: http://rodbuaiz.com/
  * Network: true
@@ -20,6 +20,10 @@
  */
 
 
+//register_activation_hook( 
+//		__FILE__, 
+//		array( 'B5F_Blog_Active_Plugins_Multisite', 'on_activation' ) 
+//);
 
 if( is_admin() && is_multisite() )
 {
@@ -69,6 +73,19 @@ class B5F_Blog_Active_Plugins_Multisite
 		return self::$instance;
 	}
 
+	public static function on_activation()
+	{
+		$plugin = plugin_basename( __FILE__ );
+		if( !is_network_only_plugin( $plugin ) )
+			wp_die(
+				'Sorry, this plugin is meant for Network Activation only', 
+				'Network only',  
+				array( 
+					'response' => 500, 
+					'back_link' => true 
+				)
+			);    
+	}
 	/**
 	 * Used for regular plugin work, ie, magic begins.
 	 *
@@ -122,6 +139,8 @@ class B5F_Blog_Active_Plugins_Multisite
 				10, 1 
 		);
 
+		add_filter( 'admin_init', array( $this, 'admin_init' ) );
+
 		// Store all blogs IDs
 		global $wpdb;
 		$blogs = $wpdb->get_results(
@@ -152,14 +171,14 @@ class B5F_Blog_Active_Plugins_Multisite
 	{
 		wp_enqueue_script( 
 				'ndbae-js', 
-				$this->plugin_url . '/ndbae.js', 
+				$this->plugin_url . 'ndbae.js', 
 				array(), 
 				false, 
 				true 
 		);
         wp_enqueue_style( 
 				'ndbae-css', 
-				$this->plugin_url . '/ndbae.css'
+				$this->plugin_url . 'ndbae.css'
 		);
 
 	}
@@ -225,4 +244,75 @@ class B5F_Blog_Active_Plugins_Multisite
 		}
 		return $active_in_blogs;
 	}
+	
+		/**
+	 * Add settings to wp-admin/options-general.php page
+	 * 
+	 * @return void 
+	 */
+	public function admin_init() 
+	{
+
+		register_setting( 
+				'network', 
+				'b5f_nbdae', // option name
+				'esc_attr' 
+		);
+		
+		add_settings_section( 
+				'nbdae_section', 
+				sprintf(
+						'<h3><a name="psb" id="psb">%s</a></h2>',
+						__( 'Post Status Bubbles', 'b5f-psb' ),
+						$this->plugin_url . 'images/icon.png'
+				), 
+				array( $this, 'section_text'), 
+				'network' 
+		);
+
+		add_settings_field(
+			'b5f_nbdae',
+			__( 'Hide bubble when viewing post screen', 'b5f-psb' ),
+			array( $this, 'hide_bubble_html' ),
+			'network',
+			'nbdae_section',
+			array( 'label_for' => 'b5f_nbdae' )
+		);
+	}
+	
+	/**
+	 * Settings section description
+	 * 
+	 * @return string
+	 */	
+	function section_text() 
+	{
+		printf(
+				'<p><i>%s</i></p>',
+				__( 'Select the post types to show the bubbles, and the status to count for. You can also hide the bubble when viewing the correspondent page.', 'b5f-psb' )
+		);
+	}
+	
+	
+	/**
+	 * Hide bubble settings field
+	 * 
+	 * @return string
+	 */	
+	public function hide_bubble_html()
+	{
+		$get_option = get_option( 'b5f_nbdae' );
+		//$saved = isset( $get_option['ppb_hide_curr_screen'] );
+		printf(
+				'<input type="checkbox" name="%1$s"  id="%1$s" %3$s />'.
+				'<label for="%1$s"> %2$s' .
+				'</label><br>',
+				esc_attr('b5f_nbdae'),
+				 __( 'Enable?', 'b5f-psb' ),
+				checked( $get_option, true, false )
+		);
+	}
+		
+		
+
 } 
