@@ -38,6 +38,15 @@ class B5F_General_Updater_and_Plugin_Love
 	 */
 	public function plugin_setup()
 	{
+        /*$hook = array( 
+            'repo' => 'Network-Deactivated-but-Active-Elsewhere', 
+            'user' => 'brasofilo',
+            'plugin_file' => defined( 'B5F_NDBAE_FILE' ) ? B5F_NDBAE_FILE : '',
+            'donate_text' => __( 'Buy me a beer'),
+            'donate_icon' => '&hearts; ',
+            'donate_link' => 'https://www.paypal.com/....'
+        );*/
+
         $this->config = apply_filters( 'b5f_updater_and_plugin_love', array() );
         if( empty( $this->config ) )
             return;
@@ -101,7 +110,7 @@ class B5F_General_Updater_and_Plugin_Love
 			return $source;
 
 		$path_parts = pathinfo($source);
-		$newsource = trailingslashit($path_parts['dirname']). trailingslashit( $this->repo_slug );
+		$newsource = trailingslashit($path_parts['dirname']). trailingslashit( $this->config['repo'] );
 		rename($source, $newsource);
 		return $newsource;
 	}    
