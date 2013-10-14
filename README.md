@@ -21,6 +21,9 @@ That's because the plugin was active prior to Network activation
 
 ## Changelog
 
+Version 2013.10.14
+* Updated updater
+
 Version 2013.10.13
 * Changed version numbering
 * Added GitHub updater

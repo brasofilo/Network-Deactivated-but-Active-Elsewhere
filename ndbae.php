@@ -4,7 +4,7 @@
  * Plugin Name: Network Deactivated but Active Elsewhere
  * Plugin URI: https://github.com/brasofilo/Network-Deactivated-but-Active-Elsewhere
  * Description: Inserts an indicator in the Network Plugins page whether a plugin is being used by any blog of the network. Shows the list of blogs on rollover.
- * Version: 2013.10.13
+ * Version: 2013.10.14
  * Author: Rodolfo Buaiz
  * Author URI: http://rodbuaiz.com/
  * Network: true
@@ -33,7 +33,7 @@ if( is_network_admin() )
     require_once __DIR__ . '/inc/core.php';
 
     # Dispatch updater
-    include_once 'inc/plugin-update-dispatch.php';
+    require_once __DIR__ . '/inc/plugin-update-dispatch.php';
 
     define( 'B5F_NDBAE_FILE', plugin_basename( __FILE__ ) );
     # STart uP
@@ -41,10 +41,5 @@ if( is_network_admin() )
         'plugins_loaded',
         array ( B5F_NDBAE_Main::get_instance(), 'plugin_setup' ), 
         10
-    );
-    add_action(
-        'plugins_loaded',
-        array ( B5F_General_Updater_and_Plugin_Love::get_instance(), 'plugin_setup' ),
-        11
     );
 }

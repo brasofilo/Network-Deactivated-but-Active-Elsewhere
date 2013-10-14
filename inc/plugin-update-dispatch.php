@@ -1,76 +1,49 @@
 <?php
 /**
- * Main plugin class
+ * Custom updater class
+ * 
+ * $config (array)
+ *     repo         => Network-Deactivated-but-Active-Elsewhere
+ *     user         => brasofilo
+ *     plugin_file  => plugin-folder/plugin-name.php
+ *     donate_text  => Buy me a beer
+ *     donate_icon  => &hearts;
+ *     donate_link  => https://www.paypal.com/....
  */
+
+if( !class_exists( 'B5F_General_Updater_and_Plugin_Love' ) ):
 class B5F_General_Updater_and_Plugin_Love
 {
-	/**
-	 * Plugin instance.
-	 * @type object
-	 */
-	protected static $instance = NULL;
-
     /**
-     * Plugin updater slug
+     * Updater configuration
      * @var string 
      */
-    private $config;// = 'Network-Deactivated-but-Active-Elsewhere';
+    private $config;
 
 	/**
-	 * Access this plugin's working instance.
-	 *
-	 * @wp-hook plugins_loaded
-	 * @since   2012.09.13
-	 * @return  object of this class
+	 * Constructor
 	 */
-	public static function get_instance()
-	{
-		NULL === self::$instance and self::$instance = new self;
-		return self::$instance;
-	}
-
-
-	/**
-	 * Used for regular plugin work, ie, magic begins.
-	 *
-	 * @wp-hook plugins_loaded
-	 * @return  void
-	 */
-	public function plugin_setup()
-	{
-        /*$hook = array( 
-            'repo' => 'Network-Deactivated-but-Active-Elsewhere', 
-            'user' => 'brasofilo',
-            'plugin_file' => defined( 'B5F_NDBAE_FILE' ) ? B5F_NDBAE_FILE : '',
-            'donate_text' => __( 'Buy me a beer'),
-            'donate_icon' => '&hearts; ',
-            'donate_link' => 'https://www.paypal.com/....'
-        );*/
-
-        $this->config = apply_filters( 'b5f_updater_and_plugin_love', array() );
-        if( empty( $this->config ) )
+	public function __construct( $config ) 
+    {
+        if( empty( $config ) )
             return;
         
+        $this->config = $config;
+
         # Updater class
         include_once 'plugin-update-checker.php';
 
         add_filter( 'upgrader_source_selection', array( $this, 'rename_github_zip' ), 1, 3 );
-        add_filter( 'plugin_row_meta', array( $this, 'donate_link' ), 10, 4 );
+        if( !empty( $config['donate_text'] ) )
+            add_filter( 'plugin_row_meta', array( $this, 'donate_link' ), 10, 4 );
+        
         $updater = new PluginUpdateCheckerB(
-    "https://raw.github.com/{$this->config['user']}/{$this->config['repo']}/master/inc/update.json", 
-            B5F_NDBAE_FILE, 
-            $this->config['repo'].'-master'
+    "https://raw.github.com/{$config['user']}/{$config['repo']}/master/inc/update.json", 
+            $config['plugin_file'], 
+            $config['repo'].'-master'
         );
 	}
 
-	/**
-	 * Constructor. Intentionally left empty and public.
-	 *
-	 * @see plugin_setup()
-	 * @since 2012.09.12
-	 */
-	public function __construct() {}
-		
     
     /**
      * Add donate link to plugin description in /wp-admin/plugins.php
@@ -83,6 +56,7 @@ class B5F_General_Updater_and_Plugin_Love
      */
     public function donate_link( $plugin_meta, $plugin_file, $plugin_data, $status ) 
 	{
+        loga($this->config);
 		if( $this->config['plugin_file'] == $plugin_file )
 			$plugin_meta[] = sprintf(
                 '%s<a href="%s">%s</a>',
@@ -116,3 +90,4 @@ class B5F_General_Updater_and_Plugin_Love
 	}    
 
 } 
+endif;

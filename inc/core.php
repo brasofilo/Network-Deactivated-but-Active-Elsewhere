@@ -30,6 +30,15 @@ class B5F_NDBAE_Main
 
 
 	/**
+	 * Constructor. Intentionally left empty and public.
+	 *
+	 * @see plugin_setup()
+	 * @since 2012.09.12
+	 */
+	public function __construct() {}
+		
+
+    /**
 	 * Access this plugin's working instance.
 	 *
 	 * @wp-hook plugins_loaded
@@ -55,35 +64,18 @@ class B5F_NDBAE_Main
 		$this->plugin_path   = plugin_dir_path( dirname( __FILE__ ) );
         $this->get_blogs();
 		add_action( 'load-plugins.php', array( $this, 'load_blogs' ) );
-        add_filter( 'b5f_updater_and_plugin_love', array( $this, 'updater' ) );
-	}
-
-    /**
-     * WILL THIS COLLIDE WITH OTHERS?
-     * I think so
-     * 
-     * @param type $data
-     * @return type
-     */
-    public function updater( $data )
-    {
-        return array( 
+        new B5F_General_Updater_and_Plugin_Love(array( 
             'repo' => 'Network-Deactivated-but-Active-Elsewhere', 
             'user' => 'brasofilo',
             'plugin_file' => defined( 'B5F_NDBAE_FILE' ) ? B5F_NDBAE_FILE : '',
-            'donate_text' => __( 'Buy me a beer'),
+            'donate_text' => __( 'Buy me two beers'),
             'donate_icon' => '&hearts; ',
             'donate_link' => 'https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=JNJXKWBYM9JP6&lc=US&item_name=Rodolfo%20Buaiz&item_number=Plugin%20donation&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted'
-        );
-    }
-	/**
-	 * Constructor. Intentionally left empty and public.
-	 *
-	 * @see plugin_setup()
-	 * @since 2012.09.12
-	 */
-	public function __construct() {}
-		
+        ));
+	}
+
+    
+    
 	/**
 	 * Dispatch all actions.
 	 * Store all blog IDs in $this->blogs.
@@ -122,17 +114,10 @@ class B5F_NDBAE_Main
 	 */
 	public function enqueue()
 	{
-        wp_register_script( 
-            'ndbae-jtip', 
-            $this->plugin_url . 'js/jtip.js', 
-            array(), 
-            false, 
-            true 
-        );
 		wp_enqueue_script( 
 				'ndbae-js', 
 				$this->plugin_url . 'js/ndbae.js', 
-				array( 'ndbae-jtip' ), 
+				array(), 
 				false, 
 				true 
 		);
