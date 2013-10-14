@@ -56,7 +56,6 @@ class B5F_General_Updater_and_Plugin_Love
      */
     public function donate_link( $plugin_meta, $plugin_file, $plugin_data, $status ) 
 	{
-        loga($this->config);
 		if( $this->config['plugin_file'] == $plugin_file )
 			$plugin_meta[] = sprintf(
                 '%s<a href="%s">%s</a>',
